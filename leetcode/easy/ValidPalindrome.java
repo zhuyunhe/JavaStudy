@@ -27,6 +27,39 @@ public class ValidPalindrome {
 			    	return true;
 			    }
 	}
+	public static  boolean validPalindrome(int n){
+		if(n<0){
+			return false;
+		}
+		int base = 1;
+		
+		//计算出一个base基数用于取得最高位
+		while(n/base >= 10){
+			base *= 10;
+		}
+		
+		while(n>0){
+			//取得最高位
+			int left = n/base;
+			
+			//取得最低位
+			int right = n%10;
+			
+			//判断
+			if(left != right){
+				return false;
+			}
+			
+			//把比较过的两位删掉
+			n -= left*base;
+			n /= 10;
+			
+			//因为每次消去了两位，所以base也要减少两位
+			base /= 100;
+			
+		}
+		return true;
+	}
 	
 	public static  boolean validPalindrome_1(String s){
 		if(!("".equals(s))){
@@ -68,5 +101,13 @@ public class ValidPalindrome {
 		} else{
 			System.out.println("no");
 		}
+		
+		int n =12321;
+		if(validPalindrome(n)){
+			System.out.println("okint");
+		} else{
+			System.out.println("noint");
+		}
+		
 	}
 }
