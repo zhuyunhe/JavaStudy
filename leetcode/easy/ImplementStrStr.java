@@ -2,28 +2,35 @@ package easy;
 
 public class ImplementStrStr {
 	public static int strStr(String haystack, String needle) {
-		if(haystack == null || needle == null){
+		if(haystack == null || needle == null || haystack.length()<needle.length()){
+			return -1;
+		}
+		if(needle.length() == 0){
 			return 0;
 		}
-		int flag = 0;
-		for(int i=0; i<haystack.length()-needle.length();i++){
+		
+		for(int i=0; i<haystack.length()-needle.length()+1; i++){
+			int pos = i;
 			for(int j=0; j<needle.length(); j++){
-				int pos = i;
-				if(haystack.charAt(pos) != needle.charAt(j)){
+				if(needle.charAt(j) == haystack.charAt(pos)){
+					pos++;
+				} else{
 					break;
 				}
-				pos++;
+				
 				if(j == needle.length()-1){
-					flag = i;
+					return i;
 				}
 			}
 		}
-        return flag;
+		
+		return -1;
+        
     }
 	
 	public static void main(String[] args){
-		String s1 = "abcdef";
-		String s2 = "cde";
+		String s1 = "mississippi";
+		String s2 = "ssippi";
 		System.out.println(strStr(s1, s2));
 	}
 }
