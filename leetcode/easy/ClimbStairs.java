@@ -2,7 +2,7 @@ package easy;
 
 public class ClimbStairs {
 	/**
-	 * 求斐波那契序列的第n项
+	 * 非递归求斐波那契序列的第n项
 	 * @param n
 	 * @return
 	 */
@@ -24,3 +24,4 @@ public class ClimbStairs {
 		System.out.println(climbStairs(3));
 	}
 }
+ 
