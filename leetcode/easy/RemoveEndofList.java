@@ -33,7 +33,22 @@ public class RemoveEndofList {
 			
 		}
     }
-	
+	 public static ListNode removeNthFromEnd_1(ListNode head, int n) {  
+	        if(null == head || n <= 0) return head;  
+	        ListNode myhead = head, tail = head;  
+	        while(n > 0 && tail.next != null){  
+	            tail = tail.next;  
+	            n--;  
+	        }  
+	        if(n > 1) return head;//n > sizeOfList  
+	        if(n == 1 && tail.next == null) return head.next;  
+	        while(tail.next != null ){  
+	            myhead = myhead.next;  
+	            tail = tail.next;  
+	        }  
+	        myhead.next = myhead.next.next;  
+	        return head;  
+	    } 
 	public static void main(String[] args){
 		ListNode n1 = new ListNode(1);
 		ListNode n2 = new ListNode(2);
@@ -45,7 +60,7 @@ public class RemoveEndofList {
 		
 		n1.next = n2;
 		
-		ListNode node = removeNthFromEnd(n1,2);
+		ListNode node = removeNthFromEnd(n3,5);
 		while(node!= null){
 			System.out.print(node.val);
 			node = node.next;
