@@ -12,6 +12,12 @@ public class BTLevelOrderTraversal {
         
     }
 	
+	/**
+	 * 深度优先遍历
+	 * @param node
+	 * @param list
+	 * @param depth
+	 */
 	public static void put(TreeNode node,List<List<Integer>> list,int depth){
 		if(node == null){
 			return;
@@ -65,9 +71,13 @@ public class BTLevelOrderTraversal {
 		TreeNode left2 = new TreeNode(3);
 		TreeNode right2 = new TreeNode(4);
 		
+		TreeNode node6 = new TreeNode(5);
+
+		
 		root.left = left;
 		root.right = right;
 		left.left = left2;
+		left.right = node6;
 		right.right = right2;
 		
 		List<List<Integer>> list = levelOrder(root);

@@ -289,7 +289,7 @@ public class Sort {
 		//selectSort(arr);
 		
 		//πÈ≤¢≈≈–Ú
-		//mergeSort(arr, tmpArray, 0, arr.length-1);
+		mergeSort(arr, tmpArray, 0, arr.length-1);
 		
 		//øÏÀŸ≈≈–Ú
 		//quickSort(arr);
@@ -297,7 +297,7 @@ public class Sort {
 		//√∞≈›≈≈–Ú
 		//bubbleSort(arr);
 		//improvedBubbleSort(arr);
-		improvedBubbleSort_2(arr);
+		//improvedBubbleSort_2(arr);
 		
 		for(int i : arr){
 			System.out.print(i+",");
