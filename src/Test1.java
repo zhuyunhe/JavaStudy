@@ -1,0 +1,10 @@
+public class Test1{
+    public static void main(String args[]){
+            String a="1234";
+            String b="1234";
+            String c = new String("1234");
+            System.out.println(a==b);
+            System.out.println(a==c);
+            System.out.println(a.equals(c));
+    }
+}
