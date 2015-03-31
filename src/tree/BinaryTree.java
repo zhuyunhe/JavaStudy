@@ -1,5 +1,10 @@
 package tree;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Queue;
+
 public class BinaryTree {
 	
 	int val;
@@ -56,8 +61,8 @@ public class BinaryTree {
 	 */
 	public void postorder(BinaryTree root){
 		if(root != null){
-			preorder(root.left);
-			preorder(root.right);
+			postorder(root.left);
+			postorder(root.right);
 			System.out.print(root.val+",");
 		}
 	}
@@ -68,10 +73,39 @@ public class BinaryTree {
 	 */
 	public void inorder(BinaryTree root){
 		if(root != null){
-			preorder(root.left);
+			inorder(root.left);
 			System.out.print(root.val+",");
-			preorder(root.right);
+			inorder(root.right);
 		}
+	}
+	
+	public List<BinaryTree> breadthFirst(BinaryTree root){
+		Queue<BinaryTree> queue = new ArrayDeque<BinaryTree>();
+		List<BinaryTree> list = new ArrayList<BinaryTree>();
+		
+		if(root != null){
+			queue.offer(root);
+		}
+		
+		while(!queue.isEmpty()){
+			list.add(queue.peek());
+			
+			System.out.println(queue.peek().val);
+			
+			//获取并移除队列的头
+			BinaryTree p = queue.poll();
+			
+			if(p.left!=null){
+				queue.offer(p.left);
+			}
+			
+			if(p.right!=null){
+				queue.offer(p.right);
+			}
+			
+		}
+		
+		return list;
 	}
 	
 	public static void main(String[] args){
@@ -85,11 +119,16 @@ public class BinaryTree {
 		System.out.println("先序遍历");
 		binaryTree.preorder(binaryTree);
 		System.out.println();
+		
 		System.out.println("中序遍历");
 		binaryTree.inorder(binaryTree);
 		System.out.println();
+		
 		System.out.println("后序遍历");
 		binaryTree.postorder(binaryTree);
+		
+		System.out.println("广度优先遍历");
+		binaryTree.breadthFirst(binaryTree);
 	}
 	
 }

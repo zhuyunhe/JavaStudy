@@ -47,7 +47,7 @@ public class QuickSort {
 	}
 	
 	public static void main(String[] args){
-		int[] a = {34,8,64,51,32,21,2,4,6};
+		int[] a = {5,4,3,7,2,6};
 		quicksort(a, 0, a.length-1);
 		
 		for(int i : a){
