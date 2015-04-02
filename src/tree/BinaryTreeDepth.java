@@ -40,6 +40,29 @@ public class BinaryTreeDepth {
 		
 		return Math.max(left, right);
 	}
+	public static int depth_1(TreeNode root){
+		
+		//先判断根节点是否为null
+		if(root == null){
+			return 0;
+		}
+		
+		int left = 0;
+		if(root.left != null){
+			left += depth(root.left);
+			
+		}
+		
+		int right = 0;
+		if(root.right != null){
+			right += depth(root.right);
+			
+		}
+		
+		return Math.max(left, right) +1;
+	}
+	
+	
 	
 	public static void main(String[] args){
 		TreeNode root = new TreeNode(1);
@@ -58,5 +81,6 @@ public class BinaryTreeDepth {
 		left2.right = node6;
 		
 		System.out.println(depth(root));
+		System.out.println(depth_1(node6));
 	}
 }
