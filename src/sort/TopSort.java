@@ -1,16 +1,36 @@
 package sort;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Iterator;
+
+class Edge{
+	Vertex dest;  //目标顶点
+	int weight;
+	
+	public Edge(Vertex v,int w){
+		dest = v;
+		weight = w;
+	}
+}
 
 class Vertex{
+	public static int INF  = Integer.MAX_VALUE /100 ;
+	
 	//顶点的值
 	int val;
 	
+	//顶点的索引
 	int index;
 	
 	//入度
 	int indegree;
+	
+	//标记
+	boolean know = false;
+	
+	int dist = INF;
+	
+	Vertex path;
 	
 	//邻接表
 	ArrayList<Vertex> adjList;
@@ -58,6 +78,10 @@ class Vertex{
 	public void setIndegree(int indegree) {
 		this.indegree = indegree;
 	}
+	
+}
+
+class AdjVertex{
 	
 }
 
@@ -114,5 +138,26 @@ class Graph{
 }
 public class TopSort {
 	
+	//最短路径算法
+	public void dijkstra(Vertex s,Graph graph){
+		s.dist = 0;
+		
+		while(true){
+			Vertex v= s;
+			
+			if(v == null){
+				break;
+			}
+			
+			v.know = true;
+			
+			Iterator<Vertex> ite = v.adjList.iterator();
+			while(ite.hasNext()){
+				Vertex w = ite.next();
+				
+			}
+			
+		}
+	}
 	
 }
