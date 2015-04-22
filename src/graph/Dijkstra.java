@@ -2,7 +2,7 @@ package graph;
 
 import java.util.ArrayList;
 
-class Edge{
+/*class Edge{
 	Vertex dest;  //Ä¿±ê¶¥µã
 	int weight;
 	
@@ -10,7 +10,7 @@ class Edge{
 		dest = v;
 		weight = w;
 	}
-}
+}*/
 
 class DVertex{
 	public static int INF  = Integer.MAX_VALUE /100 ;

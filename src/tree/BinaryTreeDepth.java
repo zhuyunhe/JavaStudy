@@ -297,6 +297,29 @@ public class BinaryTreeDepth {
 		}
 		return result;
 	}
+	public static int depth_1(TreeNode root){
+		
+		//先判断根节点是否为null
+		if(root == null){
+			return 0;
+		}
+		
+		int left = 0;
+		if(root.left != null){
+			left += depth(root.left);
+			
+		}
+		
+		int right = 0;
+		if(root.right != null){
+			right += depth(root.right);
+			
+		}
+		
+		return Math.max(left, right) +1;
+	}
+	
+	
 	
 	public static void main(String[] args){
 		TreeNode root = new TreeNode(5);
@@ -348,5 +371,6 @@ public class BinaryTreeDepth {
 			System.out.println("not find");
 		}
 		
+		System.out.println(depth(root));
 	}
 }
