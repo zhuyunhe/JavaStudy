@@ -1,7 +1,13 @@
 package sort;
 
+/**
+ * 在插入第i个数，第0到第（i-1）个数已经排好序
+ * 初始时默认第一个数自己有序
+ * @author zhu
+ *
+ */
 public class InsertSort {
-    public static void insertsort1(int a[], int n)  
+    public static void insertSort1(int a[], int n)  
     {  
         int i, j, k;  
         for (i = 1; i < n; i++)  
@@ -23,7 +29,8 @@ public class InsertSort {
             }  
         }  
     }
-    public static void insertsort2(int a[], int n)  
+    
+    public static void insertSort2(int a[], int n)  
     {  
         int i, j;  
         for (i = 1; i < n; i++)  
@@ -40,9 +47,19 @@ public class InsertSort {
         }  
     }
     
+    public static void insertSort3(int[] a,int n){
+    	for(int i=1; i<n; i++){
+    		int temp = a[i];
+    		for(int j=i-1; j>0&&a[j]>temp; j--){
+    			a[j+1] = a[j];
+    			a[j] = temp;
+    		}
+    	}
+    }
+    
     public static void main(String[] args){
     	int[] a = {0,3,2,1};
-    	insertsort2(a,a.length);
+    	insertSort3(a,a.length);
     	for(int n : a){
     		System.out.println(n);
     	}

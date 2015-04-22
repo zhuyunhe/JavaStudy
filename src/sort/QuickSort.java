@@ -1,5 +1,13 @@
 package sort;
 
+/**
+ * 快速排序
+ * 先从数列中取出一个数作为基准数
+ * 分区，将比这个基准数大的数全部放到它的右边，小于或等于它的数全部放到左边
+ * 然后在分别对左右区间重复第二步，直到各个区间只有一个数
+ * @author zhu
+ *
+ */
 public class QuickSort {
 	/**
 	 * 交换数组中两个位置上元素的值
@@ -39,7 +47,6 @@ public class QuickSort {
 			
 		}
 		
-		a[low] = povit;
 		quicksort(a,left, low-1);
 		quicksort(a,low+1, right);
 		
@@ -47,7 +54,7 @@ public class QuickSort {
 	}
 	
 	public static void main(String[] args){
-		int[] a = {5,4,3,7,2,6};
+		int[] a = {5,4,3,7,2,6,0};
 		quicksort(a, 0, a.length-1);
 		
 		for(int i : a){

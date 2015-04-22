@@ -1,10 +1,17 @@
 package heap;
 
+/**
+ * 二叉堆的性质：
+ * 父结点的值总是大于等于（或小于等于）子节点的值
+ * 每个结点的左子树和右子树都是一个二叉堆
+ * @author zhu
+ *
+ */
 public class Heap {
 	/**
 	 * 上虑，用于堆增加
 	 * @param a
-	 * @param i
+	 * @param i 新加入结点的数组下标
 	 */
 	public static void minHeapFixup(int[] a, int i){
 		int j,temp;
@@ -14,9 +21,11 @@ public class Heap {
 		j = (i-1)/2;
 		
 		while(j>=0&&i!=0){
-			if(a[j] <= temp){
+			//如果父节点小于要插入的结点，那不用做调整，跳出循环
+			if(a[j] <= temp){ 
 				break;
 			}
+			//把父节点的值放到数组中下标为i的位置，并更新i和j
 			a[i] = a[j];
 			i = j;
 			j = (i-1)/2;
@@ -32,7 +41,9 @@ public class Heap {
 	
 	/**
 	 * 最小堆下虑，用于堆删除
-	 * 堆中每次删除只能删除第0个数据
+	 * 堆中每次删除只能删除第0个数据,也就是堆得根节点元素
+	 * 删除根后在根处形成了一个空穴，我们要将空穴的两个儿子的较小者移入空穴
+	 * 这样就把空穴向下推了一层，重复该步直到堆得最后一个元素可以放入空穴中
 	 * @param a
 	 * @param i
 	 * @param n

@@ -1,5 +1,12 @@
 package sort;
-
+/**
+ * 归并排序是分治法的典型应用
+ * 将数组分成A,B两组，然后再将A,B两组各自再分成两组，依次类推。当分出来的小组只有一个数据时，可以认为
+ * 这个小组内已经排好序了，此时再合并相邻的两个小组就可以得到一个新的排好序的小组。
+ * 总体思路就是先递归分解数列，然后再合并数列。
+ * @author zhu
+ *
+ */
 public class MergeSort {
 	public void mergeSort(int[] a, int first, int last, int[] temp){
 		if(first<last){

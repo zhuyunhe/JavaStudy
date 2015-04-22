@@ -44,6 +44,7 @@ public class MaxSubSum {
 	
 	/**
 	 * 分治策略，分为左右两部分
+	 * 结果分三种情形：最大子序列在左边，最大子序列在右边，或者横跨左右
 	 * 时间复杂度：O(N*LogN)
 	 * @param array
 	 * @param left
@@ -51,6 +52,8 @@ public class MaxSubSum {
 	 * @return
 	 */
 	public static int maxSubSum_3(int[] array,int left,int right){
+		
+		//分解到单个整数，不可继续分解
 		if(left == right){
 			if(array[left] >0){
 				return array[left];
@@ -63,6 +66,7 @@ public class MaxSubSum {
 		int maxLeftSum = maxSubSum_3(array, left, center);
 		int maxRightSum = maxSubSum_3(array, center+1, right);
 		
+		//计算出包含center的最大值，然后判断情形1，2，3
 		int maxLeftBorderSum = 0;
 		int leftBorderSum = 0;
 		for(int i=center; i>=left;i--){

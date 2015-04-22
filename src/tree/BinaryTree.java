@@ -96,6 +96,7 @@ public class BinaryTree {
 			BinaryTree p = queue.poll();
 			
 			if(p.left!=null){
+				//将元素插到队列尾部
 				queue.offer(p.left);
 			}
 			
