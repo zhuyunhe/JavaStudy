@@ -556,6 +556,131 @@ public class BinaryTreeDepth {
 		
 	}
 	
+	/**
+	 * 递归求二叉树中叶子结点的个数
+	 * @param root
+	 * @return
+	 */
+	public static int getLeafNodeNumRec(TreeNode root){
+		if(root == null){
+			return 0;
+		}
+		
+		//如果该结点没有左右结点，那它就是一个叶子结点
+		if(root.left==null && root.right==null){
+			return 1;
+		}
+		
+		//如果当前结点不是叶子结点，则递归求它的左右子树的叶子结点的数目
+		return getLeafNodeNumRec(root.left)+getLeafNodeNumRec(root.right);
+	}
+	
+	/**
+	 * 迭代法求二叉树中叶子结点的个数
+	 * @param root
+	 * @return
+	 */
+	public static int getLeafNodeNum(TreeNode root){
+		
+		if(root == null){
+			return 0;
+		}
+		
+		LinkedList<TreeNode> list = new LinkedList<TreeNode>();
+		list.push(root);
+		TreeNode curNode = null;
+		int leafNum = 0;
+		
+		while(!list.isEmpty()){
+			curNode = list.pop();
+			
+			if(curNode.left != null){
+				list.push(curNode.left);
+			}
+			if(curNode.right != null){
+				list.push(curNode.right);
+			}
+			//如果当前结点是叶子结点，那叶子结点数+1
+			if(curNode.left == null && curNode.right == null){
+				leafNum++;
+			}
+		}
+		return leafNum;
+	}
+	
+	/**
+	 * 递归判断两棵二叉树是否相同
+	 * @param root
+	 * @return
+	 */
+	public static boolean isSameTreeRec(TreeNode t1,TreeNode t2){
+		if(t1==null && t2==null){
+			return true;
+		}
+		else if(t1==null || t2==null){
+			return false;
+		}
+		else if(t1.val == t2.val){
+			return true;
+		}
+		
+		return isSameTreeRec(t1.left,t2.left)&&isSameTreeRec(t2.right,t2.right);
+	}
+	
+	/**
+	 * 按层遍历判断两棵二叉树是否相同
+	 * @param root
+	 * @return
+	 */
+	public static boolean isSameTree(TreeNode t1,TreeNode t2){
+		if(t1==null && t2==null){
+			return true;
+		}
+		else if(t1==null || t2==null){
+			return false;
+		}
+		
+		LinkedList<TreeNode> list1 = new LinkedList<TreeNode>();
+		LinkedList<TreeNode> list2 = new LinkedList<TreeNode>();
+		
+		list1.push(t1);
+		list2.push(t2);
+		
+		TreeNode curNode1 = null;
+		TreeNode curNode2 = null;
+		
+		while(!list1.isEmpty() && !list2.isEmpty()){
+			curNode1 = list1.pop();
+			curNode2 = list2.pop();
+			
+			if(curNode1.val != curNode2.val){
+				return false;
+			}
+			
+			if(curNode1.left!=null){
+				list1.push(curNode1.left);
+			}
+			if(curNode1.right!=null){
+				list1.push(curNode1.right);
+			}
+			if(curNode2.left!=null){
+				list2.push(curNode2.left);
+			}
+			if(curNode2.right!=null){
+				list2.push(curNode2.right);
+			}
+		}
+		
+		if(!list1.isEmpty() || !list2.isEmpty()){
+			return false;
+		}
+		
+		return true;
+	}
+	
+	
+	
+	
 	public static void main(String[] args){
 		TreeNode root = new TreeNode(5);
 		TreeNode left = new TreeNode(3);
@@ -613,10 +738,26 @@ public class BinaryTreeDepth {
 		levelTraRec(root);
 		System.out.println();
 		
-		System.out.println("第k层结点数");
+		System.out.println("第k层结点数：");
 		System.out.println(getNodeNumKthLevel(root, 3));
 		System.out.println(getNodeNumKthLevelRec(root, 3));
 		
+		System.out.println("树中叶子结点数：");
+		System.out.println(getLeafNodeNum(root));
+		System.out.println(getLeafNodeNumRec(root));
+		
+		System.out.println("判断两棵树是否相同");
+		if(isSameTree(root, root)){
+			System.out.println("两棵树相同");
+		} else{
+			System.out.println("两棵树不同");
+		}
+		
+		if(isSameTreeRec(root, root)){
+			System.out.println("两棵树相同");
+		} else{
+			System.out.println("两棵树不同");
+		}
 		//查找
 		System.out.println("查找");
 		TreeNode find = search(root, 2);
