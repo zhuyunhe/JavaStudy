@@ -678,6 +678,81 @@ public class BinaryTreeDepth {
 		return true;
 	}
 	
+	/**
+	 * 输入某二叉树的前序遍历和中序遍历结果，重建二叉树
+	 * @param preorder 前序遍历数组
+	 * @param inorder  中序遍历数组
+	 * @param length
+	 * @return
+	 */
+	public static TreeNode construct(int[] preorder, int[] inorder, int length){
+		if(preorder==null || inorder==null || length<=0){
+			return null;
+		}
+		
+		return constructCore(preorder, 0, preorder.length-1, inorder, 0, inorder.length-1);
+	}
+	
+	/**
+	 * 剑指offer第六题
+	 * 重建二叉树的子函数
+	 * @param preorder 先序遍历数组
+	 * @param sPre 先序遍历数组的起始位置
+	 * @param ePre 先序遍历数组的结束位置
+	 * @param inorder 中序遍历数组
+	 * @param sIn 中序遍历数组的起始位置
+	 * @param eIn 中序遍历数组的结束位置
+	 * @return
+	 */
+	public static TreeNode constructCore(int[] preorder,int sPre,int ePre,int[] inorder,int sIn,int eIn){
+		//前序遍历数组的第一个元素是根节点的值
+		int rootValue = preorder[sPre];
+		TreeNode root = new TreeNode(rootValue);
+		
+		//如果该树只有一个根节点，直接返回root
+		if(sPre == ePre){
+			if(sIn == eIn && preorder[sPre]==inorder[sIn]){
+				return root;
+			}
+			else{
+				System.out.println("输入数据不对");
+				return null;
+			}
+		}
+		
+		//在中序遍历中找到根节点的值
+		int rootInorder = sIn;
+		while(rootInorder<=eIn && inorder[rootInorder]!= rootValue){
+			rootInorder++;
+		}
+		//如果中序遍历数组中没有值等于根节点的元素，说明输入数据不对
+		if(rootInorder==eIn && inorder[rootInorder]!= rootValue){
+			System.out.println("输入数据不对");
+			return null;
+		}
+		
+		//计算根节点的左子树中元素的个数
+		int leftLength = rootInorder - sIn;
+		
+		//得到左子树的在前序遍历数组中的结束位
+		int leftPreEnd = sPre + leftLength;
+		
+		//如果左子树不为空
+		if(leftLength > 0){
+			//递归构建左子树
+			root.left = constructCore(preorder, sPre+1, leftPreEnd, inorder, sIn, rootInorder-1);
+		}
+		
+		//如果右子树不为空,即前序遍历数组中除了根节点和左子树元素外还有其他元素
+		if(leftLength < ePre-sPre){
+			//递归构建右子树
+			root.right = constructCore(preorder, leftPreEnd+1, ePre, inorder, rootInorder+1, eIn);
+		}
+		
+		return root;
+		
+	}
+	
 	
 	
 	
@@ -775,5 +850,13 @@ public class BinaryTreeDepth {
 		}
 		
 		System.out.println(depth(root));
+		
+		int[] preorder = {5,3,2,4,7};
+		int[] inorder = {2,3,4,5,7};
+		 
+		TreeNode reTree = construct(preorder, inorder, preorder.length);
+		inOrder(reTree);
+		
+
 	}
 }
