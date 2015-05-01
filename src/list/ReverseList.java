@@ -10,10 +10,12 @@ public class ReverseList {
 	 * @return
 	 */
 	public static ListNode reverse(ListNode head){
+		//当前结点为null，或者当前结点没有后续结点时
 		if(head==null || head.getNext()==null){
 			return head;
 		}
 		
+		//当前结点不为null并且有next时
 		ListNode tempNode = reverse(head.getNext());
 		head.getNext().setNext(head);
 		head.setNext(null);
