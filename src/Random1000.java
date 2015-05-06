@@ -19,8 +19,6 @@ public class Random1000 {
 			  }else{
 				  System.out.print(result);
 			  }
-			  
-
 		  }
 		 }
 }

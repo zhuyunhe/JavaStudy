@@ -63,7 +63,7 @@ public class TopSort {
 		v2.adj.add(v3);
 		v3.indegree++;
 		
-		List<Vertex> vs = new LinkedList<>();
+		List<Vertex> vs = new LinkedList<Vertex>();
 		vs.add(v1);
 		vs.add(v2);
 		vs.add(v3);
