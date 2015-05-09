@@ -26,7 +26,7 @@ public class Print1ToMaxOfNDigits {
 		if(n >= arr.length){
 			printArray(arr);
 		} else{
-			//从数组的高位开始（数组的高位(最右边那一位)相当于最后结果的地位），把数组的每一位都从0到9排列一遍，就得到了所有的十进制数
+			//从数组的高位开始（数组的高位(最右边那一位)相当于最后结果的低位），把数组的每一位都从0到9排列一遍，就得到了所有的十进制数
 			for(int i=0; i<=9; i++){
 				arr[n] = i;
 				print1ToNth(n+1, arr);
