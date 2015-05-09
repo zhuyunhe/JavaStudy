@@ -39,6 +39,31 @@ class TreeNode implements Comparable<TreeNode>{
 
 public class BinaryTreeDepth {
 
+	/**
+	 * 求二叉树的最小深度
+	 * @param root
+	 * @return
+	 */
+	public static int minDepthRec(TreeNode root){
+		//先判断根节点是否为null
+		if(root == null){
+			return 0;
+		}
+		
+		int left = 0;
+		if(root.left != null){
+			left = depth(root.left);
+			
+		}
+		
+		int right = 0;
+		if(root.right != null){
+			right = depth(root.right);
+			
+		}
+		
+		return Math.min(left, right)+1;
+	}
 	
 		/*树的深度 
 		 * 
@@ -783,6 +808,7 @@ public class BinaryTreeDepth {
 		
 		System.out.println("树的深度为："+depthRec(root));
 		System.out.println("树的深度为："+depth1(root));
+		System.out.println("树的最小深度为："+minDepthRec(root));
 
 		System.out.println("树中一共有多少个结点："+getNodeNum(root));
 		System.out.println("树中一共有多少个结点："+getNodeNumRec(root));

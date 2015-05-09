@@ -20,6 +20,7 @@ public class AllRange {
 		if(begin == len){
 			System.out.println(charToString(c));
 		} else{
+			//第i个数分别与它后面的数交换得到新的全排列
 			for(int i=begin; i<=len; i++){
 				swap(c,begin,i);
 				permutation(c,begin+1,len);
