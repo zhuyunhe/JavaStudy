@@ -21,6 +21,12 @@ public class QuickSort {
 		a[j] = temp;
 	}
 	
+	/**
+	 * 合在一个函数中的快排
+	 * @param a
+	 * @param left
+	 * @param right
+	 */
 	public static void quicksort(int[] a,int left,int right){
 		if(left<right){
 			
@@ -31,14 +37,14 @@ public class QuickSort {
 		int high = right;
 		
 		while(low < high){
-			while(low<high && a[high] >= povit){
+			while(low<high && a[high] > povit){
 				high--;
 			}
 			if(low<high){
 				swapReference(a, low, high);
 			}
 			
-			while(low<high && a[low] < povit){
+			while(low<high && a[low] <= povit){
 				low++;
 			}
 			if(low<high){
@@ -53,9 +59,57 @@ public class QuickSort {
 		}
 	}
 	
+	/**
+	 * 把一个数组以index为界分为左右两部分，index左边的数小于index，index右边的数大于index
+	 * @param a
+	 * @param left
+	 * @param right
+	 * @return index
+	 */
+	public static int partition(int[] a, int left, int right){
+		int povit = a[left];
+		
+		int low = left;
+		int high = right;
+		
+		while(low < high){
+			while(low<high && a[high]>povit){
+				high--;
+			}
+			a[low] = a[high];
+			
+			//<=好别忘了
+			while(low<high && a[low]<=povit){
+				low++;
+			}
+			a[high] = a[low];
+		}
+		
+		a[low] = povit;
+		
+		return low;
+	}
+	
+	/**
+	 * partition部分提取出去的快排
+	 * @param a
+	 * @param left
+	 * @param right
+	 */
+	public static void quicksort2(int[] a,int left,int right){
+		if(left > right){
+			return;
+		}
+		
+		int index = partition(a, left, right);
+		
+		quicksort2(a,left,index-1);
+		quicksort2(a,index+1,right);
+	}
+	
 	public static void main(String[] args){
-		int[] a = {5,4,3,7,2,6,0};
-		quicksort(a, 0, a.length-1);
+		int[] a = {2,3,2,2,4};
+		quicksort2(a, 0, a.length-1);
 		
 		for(int i : a){
 			System.out.print(i+",");
