@@ -76,13 +76,17 @@ public class QuickSort {
 			while(low<high && a[high]>povit){
 				high--;
 			}
-			a[low] = a[high];
+			if(low < high){
+				a[low] = a[high];
+			}
 			
 			//<=ºÃ±ðÍüÁË
 			while(low<high && a[low]<=povit){
 				low++;
 			}
-			a[high] = a[low];
+			if(low<high){
+				a[high] = a[low];
+			}
 		}
 		
 		a[low] = povit;
@@ -108,7 +112,7 @@ public class QuickSort {
 	}
 	
 	public static void main(String[] args){
-		int[] a = {2,3,2,2,4};
+		int[] a = {5,4,3,2,1};
 		quicksort2(a, 0, a.length-1);
 		
 		for(int i : a){
