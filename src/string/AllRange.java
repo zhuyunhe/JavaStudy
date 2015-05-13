@@ -50,5 +50,7 @@ public class AllRange {
 		map.put(2, 1);
 		map.put(3, 1);
 		map.put(4, 1);
+		String s = "1234";
+		String s2 = s.intern();
 	}
 }

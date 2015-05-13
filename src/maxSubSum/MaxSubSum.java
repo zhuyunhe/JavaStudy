@@ -1,5 +1,10 @@
 package maxSubSum;
 
+/**
+ * 剑指offer31题
+ * @author zhu
+ *
+ */
 public class MaxSubSum {
 	
 	/**
@@ -13,6 +18,7 @@ public class MaxSubSum {
 		for(int i=0; i<array.length; i++){
 			for(int j=i; j<array.length; j++){
 				int tempSum = 0;
+				//把i到j的元素相加，就是i到j这个序列的和，这个把[i,j]作为一个单位
 				for(int k=i; k<=j; k++){
 					tempSum += array[k];
 				}
@@ -26,6 +32,11 @@ public class MaxSubSum {
 		return maxSum;
 	}
 	
+	/**
+	 * 去掉方法1中最内存循环，以每个元素为一个单位，直接在上面做加法
+	 * @param array
+	 * @return
+	 */
 	public static int maxSubSum_2(int[] array){
 		int maxSum = 0;
 		for(int i=0; i<array.length; i++){
@@ -44,7 +55,7 @@ public class MaxSubSum {
 	
 	/**
 	 * 分治策略，分为左右两部分
-	 * 结果分三种情形：最大子序列在左边，最大子序列在右边，或者横跨左右
+	 * 结果分三种情形：最大子序列在左边，最大子序列在右边，或者横跨左右（包括左边最后一个元素的最大和与包括右边第一个元素的最大和的和）
 	 * 时间复杂度：O(N*LogN)
 	 * @param array
 	 * @param left
@@ -106,7 +117,8 @@ public class MaxSubSum {
 	
 	/**
 	 * 一个正数如果加上一个负数那么得到的结果一定比原来小，
-	 * 所以我们可以这样来分析每次加上最新的元素，先与maxSum进行比较，如果大于则把它赋值给maxSum，否则如果结果小于0，那么就从新开始
+	 * 所以我们可以这样来分析每次加上最新的元素，先与maxSum进行比较，如果大于则把它赋值给maxSum，如果小于maxSum但大于0，则maxSum不变，继续循环；否则如果结果小于0，那么就从新开始
+	 * 这其实也是一种动态规划
 	 * 时间复杂度：O(N)
 	 * @param array
 	 * @return
@@ -116,8 +128,25 @@ public class MaxSubSum {
 		int tempSum = 0;
 		
 		for(int i=0; i<array.length; i++){
-			tempSum += array[i];
+			if(tempSum <= 0){
+				tempSum = array[i];
+			} else{
+				tempSum += array[i];
+			}
 			
+			if(tempSum > maxSum){
+				maxSum = tempSum;
+			}
+		}
+		
+		return maxSum;
+	}
+	public static int maxSubSum_5(int[] array){
+		int maxSum = 0;
+		int tempSum = 0;
+		
+		for(int i=0; i<array.length; i++){
+			tempSum += array[i];
 			if(tempSum > maxSum){
 				maxSum = tempSum;
 			} else if(tempSum < 0){
@@ -146,5 +175,9 @@ public class MaxSubSum {
 		int maxSum_4 = maxSubSum_4(array);
 		
 		System.out.println("解法四："+maxSum_4);
+		
+		int maxSum_5 = maxSubSum_5(array);
+		
+		System.out.println("解法五："+maxSum_5);
 	}
 }
