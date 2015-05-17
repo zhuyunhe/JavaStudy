@@ -44,7 +44,7 @@ public class AllRange {
 	}
 	
 	public static void main(String[] args){
-		permutation("1234");
+		permutation("123");
 		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
 		map.put(1, 1);
 		map.put(2, 1);
