@@ -36,7 +36,10 @@ class TreeNode implements Comparable<TreeNode>{
 		
 	}
 }
-
+//定义一个内部类来表示深度
+class Depth{
+	int depth;
+}
 public class BinaryTreeDepth {
 
 	/**
@@ -702,7 +705,55 @@ public class BinaryTreeDepth {
 		
 		return true;
 	}
+	/**
+	 * 输入一棵树的根节点，判断是否是平衡二叉树，使用了递归的方法
+	 * 缺点是一个结点会被重复遍历多次，效率低
+	 * @param root
+	 * @return
+	 */
+	public static boolean isBalancedTreeRec(TreeNode root){
+		if(root==null){
+			return true;
+		}
+		
+		int left = depth(root.left);
+		int right = depth(root.right);
+		
+		int diff = left - right;
+		//根节点满足平衡，接着判断其左结点和右结点
+		if(diff<=1 && diff>=-1){
+			return isBalancedTreeRec(root.left)&&isBalancedTreeRec(root.right);
+		} else{
+			return false;
+		}
+	}
 	
+	/**
+	 * 用后序遍历的方式遍历二叉树的每一个结点，在遍历到一个结点之前我们已经遍历了它的左右子树。
+	 * 遍历每个结点时记录下它的深度
+	 * @param root
+	 * @return
+	 */
+	
+	public static boolean isBalancedTree(TreeNode root,Depth depth){
+		if(root==null){
+			depth.depth = 0;
+			return true;
+		}
+		
+		Depth leftDepth = new Depth();	//左子节点的深度
+		Depth rightDepth = new Depth();	//右子节点的深度
+		
+		if(isBalancedTree(root.left, leftDepth) && isBalancedTree(root.right, rightDepth)){
+			int diff = leftDepth.depth - rightDepth.depth;
+			if(diff<=1 && diff>=-1){
+				depth.depth = 1 + (leftDepth.depth>rightDepth.depth?leftDepth.depth:rightDepth.depth);
+				return true;
+			}
+		}
+		
+		return false;
+	}
 	/**
 	 * 输入某二叉树的前序遍历和中序遍历结果，重建二叉树
 	 * @param preorder 前序遍历数组
@@ -789,6 +840,7 @@ public class BinaryTreeDepth {
 		TreeNode left2 = new TreeNode(2);
 		TreeNode right2 = new TreeNode(4);
 		
+		TreeNode test = new TreeNode(1);
 		
 		//构造树
 		insertNode1(root, left);
@@ -796,6 +848,7 @@ public class BinaryTreeDepth {
 		insertNode1(root, right);
 		insertNode1(root, left2);
 		insertNode1(root, right2);
+		//insertNode1(root, test);
 		/**
 		 *           5
 		 *          / \
@@ -813,6 +866,18 @@ public class BinaryTreeDepth {
 		System.out.println("树中一共有多少个结点："+getNodeNum(root));
 		System.out.println("树中一共有多少个结点："+getNodeNumRec(root));
 		
+		System.out.println("判断是否是平衡二叉树：");
+		if(isBalancedTreeRec(root)){
+			System.out.println("是平衡二叉树");
+		}else{
+			System.out.println("不是平衡二叉树");
+		}
+		System.out.println("判断是否是平衡二叉树：");
+		if(isBalancedTree(root,new Depth())){
+			System.out.println("是平衡二叉树");
+		}else{
+			System.out.println("不是平衡二叉树");
+		}
 		System.out.println("先序遍历：");
 		preOrder(root);
 		System.out.println();

@@ -10,7 +10,6 @@ public class BinaryTree {
 	int val;
 	BinaryTree left;
 	BinaryTree right;
-	
 	public BinaryTree(int n){
 		this.val = n;
 		this.left = null;

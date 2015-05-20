@@ -40,7 +40,7 @@ public class ReverseString {
 	}
 	
 	public static void main(String[] args){
-		String s = "abcd";
+		String s = "i love you";
 		System.out.println(reverseRec(s.toCharArray(), 0, s.length()-1));
 		
 		String juzi = "i love you";
