@@ -10,6 +10,9 @@ public class AllRange {
 	
 	//在字符数组c中，[begin,end)中是否有数字与下标为end的数字相等  
 	public static boolean isSwap(char[] c, int begin, int end){
+		if(begin == end){
+			return false;
+		}
 		for(int i=begin; i<end; i++){
 			if(c[i] == c[end]){
 				return false;

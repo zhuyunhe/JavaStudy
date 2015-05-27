@@ -829,6 +829,34 @@ public class BinaryTreeDepth {
 		
 	}
 	
+	/**
+	 * 找到二叉查找树中两个节点的最低公共祖先节点
+	 * 这个程序的缺点的是，如果node1或node2不是二叉查找树中的节点，没有相应的错误处理机制
+	 * @param root 二叉查找树的根节点
+	 * @param node1 节点1
+	 * @param node2节点2
+	 * @return
+	 */
+	public static TreeNode getLastCommonParentRec(TreeNode root, TreeNode node1, TreeNode node2){
+		
+		if(root==null || node1==null || node2==null){
+			return null;
+		}
+		
+		//如果根节点的值大于node1和node2的值，说明这两个节点都在根节点的左子树中
+		if(root.val>node1.val && root.val>node2.val){
+			return getLastCommonParentRec(root.left, node1, node2);
+		}
+		
+		//如果根节点的值小于node1和node2的值，说明这两个节点都在根节点的右子树中
+		if(root.val<node1.val && root.val<node2.val){
+			return getLastCommonParentRec(root.right, node1, node2);
+		}
+		
+		//node1和node2的值一个大于根节点，另一个小于根节点，那说明这个根节点就是它们的最低公共祖先节点
+		return root;
+	}
+	
 	
 	
 	
@@ -948,6 +976,12 @@ public class BinaryTreeDepth {
 		TreeNode reTree = construct(preorder, inorder, preorder.length);
 		inOrder(reTree);
 		
-
+		//查找两个节点的最低公共祖先节点
+		System.out.println();
+		System.out.println("查找最低公共祖先");
+		TreeNode com = getLastCommonParentRec(root, left2, right2);
+		if(com!=null){
+			System.out.println(com.val);
+		}
 	}
 }

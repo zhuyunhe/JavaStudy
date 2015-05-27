@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<employees> 
+<employee> 
+<name>James</name>
+ <sex>m</sex> 
+ <age>28</age>
+</employee> 
+<employee> 
+<name>Wade</name>
+ <sex>m</sex> 
+ <age>30</age>
+</employee> 
+</employees>
