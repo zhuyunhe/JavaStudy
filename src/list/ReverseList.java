@@ -5,7 +5,7 @@ public class ReverseList {
 	/**
 	 * 递归思想
 	 * 在翻转当前节点之前，如果该节点有后续节点，先翻转其后续节点
-	 * 如果该节点没有子节点，就把该节点的next指向其父节点，并不父节点的next置为null
+	 * 如果该节点没有子节点，就把该节点的next指向其父节点，并把父节点的next置为null
 	 * @param head
 	 * @return
 	 */

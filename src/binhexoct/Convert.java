@@ -105,7 +105,7 @@ public class Convert {
 		//用一个可变的字符序列来保存转换结果
 		StringBuilder sb = new StringBuilder();
 		while(num != 0){
-			int temp = num%16;
+			int temp = num&15;
 			if(temp > 9){
 				//注意要把int转为char
 				sb.append((char)('A'+temp-10));
@@ -129,17 +129,17 @@ public class Convert {
 		char[] arr = new char[32];
 		int len = arr.length;  
 		//通过循环完成转换
-		    while(num!=0){
-		        int temp = num & base;
-		        arr[--len]=chs[temp];
-		        num = num>>>offset;
-		    }
-		    for(int i=0;i<arr.length;i++){
-		    	//空字符就不打了
-		    	if(arr[i] != '\0'){
-		    	System.out.print(arr[i]);
-		    	}
-		    }
+	    while(num!=0){
+	        int temp = num & base;
+	        arr[--len]=chs[temp];
+	        num = num>>>offset;
+	    }
+	    for(int i=0;i<arr.length;i++){
+	    	//空字符就不打了
+	    	if(arr[i] != '\0'){
+	    	System.out.print(arr[i]);
+	    	}
+	    }
 }
 	public static void main(String[] args){
 		int a = 12;
